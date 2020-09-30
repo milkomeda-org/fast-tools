@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 5px;
+            width: auto;
+            /*border: none;*/
+        }
+
+        #box {
+            width: 340px;
+            float: left;
+        }
+
+        #text {
+            display: block;
+            width: 260px;
+            height: 28px;
+            padding: 0 0 0 5px;
+            border-radius: 2px 0 0 2px;
+            border: #9a9a9a 1px solid;
+            outline: none;
+            float: left;
+        }
+
+        #text::selection {
+            background: #9a9a9a;
+            color: #ffffff;
+        }
+
+        #submit {
+            float: left;
+            width: 70px;
+            height: 30px;
+            padding: 5px;
+            color: #fff;
+            outline: none;
+            border: none;
+            border-radius: 0 2px 2px 0;
+            background: #BBBBBB;
+        }
+
+        .activity {
+            background: #888888 !important;
+        }
+
+        .activity:hover {
+            background: #444444 !important;
+        }
+
+        .activity:active {
+            background: #111111 !important;
+        }
+
+        .activity_ok {
+            background: #33CC66 !important;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+<span id="box">
+    <input autofocus id="text" type="text">
+        <input disabled id="submit" type="button" value="Base">
+</span>
+<script src="utils.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

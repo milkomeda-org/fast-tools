@@ -1,0 +1,37 @@
+{
+  "name": "AnyBase",
+  "version": "1.1",
+  "description": "Easily convert any element to base64 encoding, which is a plug-in for developers or artists",
+  "permissions": [
+    "contextMenus",
+    "*://*/*"
+  ],
+  "background": {
+    "scripts": [
+      "utils.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "display tooltip",
+    "default_icon": {
+      "16": "images/16.png",
+      "32": "images/32.png",
+      "48": "images/48.png",
+      "128": "images/128.png"
+    }
+  },
+  "icons": {
+    "16": "images/16.png",
+    "32": "images/32.png",
+    "48": "images/48.png",
+    "128": "images/128.png"
+  },
+  "manifest_version": 2
+}
+
+简单便捷的实用工具
+将你的图片，音频，或者网络资源，快速得转换成base64格式
+我们目前只在图片和音频元素上提供快捷菜单，当然，点击插件图标，你可以转换一切你想转换的网络资源
