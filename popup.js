@@ -1,39 +1,34 @@
 let text = document.getElementById('text');
+let text_icon = document.getElementById('text_icon')
 let submit = document.getElementById('submit');
 
-const Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+const Expression = /http(s)?:\/\/?/;
 const objExp = new RegExp(Expression);
 const TEXT_PREFIX = "data:text/plain;base64,"
 
-const submit_status = function (disabled, tx) {
+const submit_status = function (disabled) {
     submit.disabled = disabled
-    submit.setAttribute('class', !disabled ? 'activity' : '')
-    if (tx) {
-        submit.value = tx
-        if (tx === "OK") {
-            //     chrome.notifications.create(Math.random() + '', {"type":"basic","iconUrl":"./128.png", "title":"Done", "message":`The code is copied to the clipboard!\n${new Date()}`},function (notificationId){
-            //
-            //     })
-            submit.setAttribute('class', 'activity_ok')
-        }
-    }
 }
 
 text.oninput = function (element) {
+    submit.innerText = "GET"
     if (text.value !== '') {
         if (objExp.test(text.value) === true) {
-            submit_status(false, "Url")
+            text_icon.setAttribute("uk-icon", "icon: link")
+            submit_status(false)
         } else {
-            submit_status(false, "Text")
+            text_icon.setAttribute("uk-icon", "icon: file-text")
+            submit_status(false)
         }
     } else {
-        submit_status(true, "Base")
+        text_icon.setAttribute("uk-icon", "icon: code")
+        submit_status(true)
     }
 }
 
 submit.onclick = async function (element) {
     const f = async function () {
-        submit_status(true, "Executing")
+        submit_status(true)
         if (objExp.test(text.value) === true) {
             await toDataUrl(text.value, function (myBase64) {
                 copyToClipboard(myBase64);
@@ -42,7 +37,8 @@ submit.onclick = async function (element) {
             copyToClipboard(TEXT_PREFIX + window.btoa(text.value));
         }
         text.value = ""
-        submit_status(true, "OK")
+        submit.innerText = "OK"
+        submit_status(true)
     };
     await f()
 };

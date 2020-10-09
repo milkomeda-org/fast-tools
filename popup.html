@@ -1,70 +1,46 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
+    <link rel="stylesheet" type="text/css" href="style/uikit.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 5px;
-            width: auto;
+        body {
+            padding: 10px;
+            width: 30rem;
             /*border: none;*/
-        }
-
-        #box {
-            width: 340px;
-            float: left;
-        }
-
-        #text {
-            display: block;
-            width: 260px;
-            height: 28px;
-            padding: 0 0 0 5px;
-            border-radius: 2px 0 0 2px;
-            border: #9a9a9a 1px solid;
-            outline: none;
-            float: left;
-        }
-
-        #text::selection {
-            background: #9a9a9a;
-            color: #ffffff;
-        }
-
-        #submit {
-            float: left;
-            width: 70px;
-            height: 30px;
-            padding: 5px;
-            color: #fff;
-            outline: none;
-            border: none;
-            border-radius: 0 2px 2px 0;
-            background: #BBBBBB;
-        }
-
-        .activity {
-            background: #888888 !important;
-        }
-
-        .activity:hover {
-            background: #444444 !important;
-        }
-
-        .activity:active {
-            background: #111111 !important;
-        }
-
-        .activity_ok {
-            background: #33CC66 !important;
         }
     </style>
     <title></title>
 </head>
 <body>
-<span id="box">
-    <input autofocus id="text" type="text">
-        <input disabled id="submit" type="button" value="Base">
+<ul uk-tab>
+    <li><a href="#">AnyBase</a></li>
+    <li><a href="#">Developing</a></li>
+</ul>
+
+<ul class="uk-switcher uk-margin">
+    <li>
+        <form>
+            <div>
+                <div uk-form-custom="target: true">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" id="text_icon" uk-icon="icon: code"></span>
+                        <input class="uk-input uk-form-width-medium" id="text" autocomplete="off" type="text" placeholder="_">
+                    </div>
+                </div>
+                <button class="uk-button uk-button-secondary" id="submit" >Get</button>
+            </div>
+        </form>
+    </li>
+    <li>More is on the way</li>
+</ul>
+<br>
+<span id="about">
+    <a target="_blank" href="https://www.milkomeda.org">Privacy</a>
+    <a target="_blank" href="https://github.com/milkomeda-org/anybase">Github</a>
+    <a target="_blank" href="https://www.lauvinson.com">Author</a>
 </span>
+<script src="style/uikit.min.js"></script>
+<script src="style/uikit-icons.min.js"></script>
 <script src="utils.js"></script>
 <script src="popup.js"></script>
 </body>

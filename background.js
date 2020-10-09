@@ -9,11 +9,9 @@ chrome.runtime.onInstalled.addListener(function () {
     });
 
     chrome.contextMenus.onClicked.addListener(function (info, tab) {
-        if (info.mediaType === "image") {
-            //get image bytes
-            toDataUrl(info.srcUrl, function (myBase64) {
-                copyToClipboard(myBase64)
-            });
-        }
+        toDataUrl(info.srcUrl, function (myBase64) {
+            console.log(myBase64)
+            copyToClipboard(myBase64)
+        });
     })
 });
