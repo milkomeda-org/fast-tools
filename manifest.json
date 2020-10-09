@@ -1,6 +1,6 @@
 {
   "name": "AnyBase",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Easily convert any element to base64 encoding, which is a plug-in for developers or artists",
   "permissions": [
     "contextMenus",
