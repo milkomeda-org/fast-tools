@@ -1,19 +1,26 @@
 // get base64 data from url
-async function toDataUrl(url, callback) {
-    await Promise.all([fetch(url,
-        {
-            method: 'get',
-            responseType: 'blob'
-        }).then(res => res.blob()).then(blob => {
-        const reader = new FileReader();
-        reader.onloadend = function () {
-            callback(reader.result);
-        }
-        reader.readAsDataURL(blob);
-    }).catch(e => {
-        console.log("Oops, error", e);
-        alert(e)
-    })])
+async function toDataUrl(url) {
+    return new Promise((resolve, reject) => {
+        fetch(url,
+            {
+                method: 'get',
+                responseType: 'blob'
+            }).then(res => {
+            if (res.ok) {
+                return res.blob()
+            } else {
+                reject(res)
+            }
+        }).then(blob => {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                resolve(reader.result)
+            }
+            reader.readAsDataURL(blob);
+        }).catch(e => {
+            reject(e)
+        })
+    })
 }
 
 

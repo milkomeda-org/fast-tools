@@ -5,35 +5,88 @@
     <style>
         body {
             padding: 10px;
-            width: 30rem;
-            /*border: none;*/
+            width: 40rem;
+        }
+        ::-webkit-scrollbar {
+            display: none;
         }
     </style>
     <title></title>
 </head>
 <body>
 <ul uk-tab>
-    <li><a href="#">AnyBase</a></li>
-    <li><a href="#">Developing</a></li>
+    <li><a href="#">Developer</a></li>
+    <li class="uk-disabled"><a href="#">Artist</a></li>
 </ul>
-
 <ul class="uk-switcher uk-margin">
     <li>
-        <form>
+        <div class="uk-child-width-1-1@s uk-grid-match" uk-grid>
+            <!-- ticker -->
             <div>
-                <div uk-form-custom="target: true">
-                    <div class="uk-inline">
-                        <span class="uk-form-icon" id="text_icon" uk-icon="icon: code"></span>
-                        <input class="uk-input uk-form-width-medium" id="text" autocomplete="off" type="text" placeholder="_">
-                    </div>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <div class="uk-card-badge uk-label">Ticker</div>
+                    <form>
+                        <div>
+                            <div uk-form-custom="target: true">
+                                <div class="uk-inline">
+                                    <a class="uk-form-icon" id="copy_ticker" uk-icon="icon: copy"></a>
+                                    <input class="uk-input uk-form-width-medium" id="ticker" autocomplete="off" type="text" placeholder="_">
+                                </div>
+                                &nbsp;&nbsp;
+                                <span class="uk-margin-small-right" uk-icon="clock"></span>
+                                <div class="uk-inline">
+                                    <a class="uk-form-icon uk-form-icon-flip" id="copy_timestamp" uk-icon="icon: copy"></a>
+                                    <input class="uk-input uk-form-width-medium" id="timestamp" autocomplete="off" type="text" placeholder="_">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <button class="uk-button uk-button-secondary" id="submit" >Get</button>
             </div>
-        </form>
+            <!-- base -->
+            <div>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <div class="uk-card-badge uk-label uk-label-warning">AnyBase</div>
+                    <form>
+                        <div>
+                            <div uk-form-custom="target: true">
+                                <div class="uk-inline">
+                                    <span class="uk-form-icon" id="text_icon" uk-icon="icon: code"></span>
+                                    <input class="uk-input uk-form-width-medium" autofocus="autofocus" id="text" autocomplete="off" type="text" placeholder="_">
+                                </div>
+                            </div>
+                            <button class="uk-button uk-button-secondary" id="submit" disabled>Get</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- port scan -->
+<!--            <div>-->
+<!--                <div class="uk-card uk-card-default uk-card-body">-->
+<!--                    <div class="uk-card-badge uk-label uk-label-success">PortScan</div>-->
+<!--                    <form>-->
+<!--                        <div>-->
+<!--                            <div uk-form-custom="target: true">-->
+<!--                                <div class="uk-inline">-->
+<!--                                    <span class="uk-form-icon" uk-icon="icon: copy"></span>-->
+<!--                                    <input class="uk-input uk-form-width-medium" id="host" autocomplete="off" type="text" placeholder="Host">-->
+<!--                                </div>-->
+<!--                                <div class="uk-inline">-->
+<!--                                    <input class="uk-input uk-form-width-xsmall" id="port" autocomplete="off" type="text" placeholder="Port">-->
+<!--                                </div>-->
+<!--                                <div class="uk-inline">-->
+<!--                                    <button class="uk-button uk-button-secondary" id="scan" disabled>Scan</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
     </li>
-    <li>More is on the way</li>
+    <li>you are so good!👍</li>
 </ul>
-<br>
+<hr>
 <span id="about">
     <a target="_blank" href="https://www.milkomeda.org">Privacy</a>
     <a target="_blank" href="https://github.com/milkomeda-org/anybase">Github</a>
