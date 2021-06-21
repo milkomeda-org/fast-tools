@@ -25,6 +25,41 @@ const OK = function () {
     });
 };
 
+const toDataUrl = async function (url) {
+    return new Promise((resolve, reject) => {
+        fetch(url,
+            {
+                method: 'get',
+                responseType: 'blob'
+            }).then(res => {
+            if (res.ok) {
+                return res.blob()
+            } else {
+                reject(res)
+            }
+        }).then(blob => {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                resolve(reader.result)
+            }
+            reader.readAsDataURL(blob);
+        }).catch(e => {
+            reject(e)
+        })
+    })
+}
+
+const copyToClipboard = async function (text) {
+    const input = document.createElement("input");
+    input.setAttribute('readonly', 'readonly');
+    input.setAttribute('value', text);
+    input.setAttribute('id', 'temple')
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+}
+
 const ping = (url, timeout = 6000) => {
     return new Promise((reslove, reject) => {
         const urlRule = new RegExp('(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]');
@@ -120,53 +155,53 @@ timestamp.oninput = function (e) {
         ticker.value = ""
     }
 };
-copy_ticker.onclick = function (e) {
-    copyToClipboard(ticker.value !== "" ? ticker.value : ticker.placeholder)
+copy_ticker.onclick = async function (e) {
+    await copyToClipboard(ticker.value !== "" ? ticker.value : ticker.placeholder)
     OK()
 };
-copy_timestamp.onclick = function (e) {
-    copyToClipboard(timestamp.value !== "" ? timestamp.value : timestamp.placeholder)
+copy_timestamp.onclick = async function (e) {
+    await copyToClipboard(timestamp.value !== "" ? timestamp.value : timestamp.placeholder)
     OK()
 };
 
 // port scan
-host.oninput = function (element) {
-    scan.disabled = ("" === host.value)
-}
-scan.onclick = function (e) {
-    //发起tcp
-    const port = "" === port.value ? 80 : port.value
-    const port_scan = new RTCPeerConnection({
-        iceServers: "turn:" + host.value + ":" + port + "?transport=tcp",
-        iceCandidatePoolSize: 0
-    });
-    port_scan.createDataChannel('', {
-        reliable: false
-    });
-    port_scan.onicecandidateerror = function (e) {
-        if (e.url == null) {
-            return;
-        }
-        if (e.hostCandidate !== "0.0.0.x:0") {
-            console.log("open")
-        } else {
-            console.log("close")
-        }
-    }
-    setTimeout(function () {
-        if (port_scan.iceGatheringState === "gathering") {
-            port_scan.close();
-        }
-    }, 60000);
-    port_scan.onicegatheringstatechange = function (e) {
-        if (port_scan.iceGatheringState === "complete") {
-            port_scan.close();
-        }
-    }
-    port_scan.createOffer(function (offerDesc) {
-            port_scan.setLocalDescription(offerDesc);
-        },
-        function (e) {
-            console.log("Create offer failed callback.");
-        });
-}
+// host.oninput = function (element) {
+//     scan.disabled = ("" === host.value)
+// }
+// scan.onclick = function (e) {
+//     //发起tcp
+//     const port = "" === port.value ? 80 : port.value
+//     const port_scan = new RTCPeerConnection({
+//         iceServers: "turn:" + host.value + ":" + port + "?transport=tcp",
+//         iceCandidatePoolSize: 0
+//     });
+//     port_scan.createDataChannel('', {
+//         reliable: false
+//     });
+//     port_scan.onicecandidateerror = function (e) {
+//         if (e.url == null) {
+//             return;
+//         }
+//         if (e.hostCandidate !== "0.0.0.x:0") {
+//             console.log("open")
+//         } else {
+//             console.log("close")
+//         }
+//     }
+//     setTimeout(function () {
+//         if (port_scan.iceGatheringState === "gathering") {
+//             port_scan.close();
+//         }
+//     }, 60000);
+//     port_scan.onicegatheringstatechange = function (e) {
+//         if (port_scan.iceGatheringState === "complete") {
+//             port_scan.close();
+//         }
+//     }
+//     port_scan.createOffer(function (offerDesc) {
+//             port_scan.setLocalDescription(offerDesc);
+//         },
+//         function (e) {
+//             console.log("Create offer failed callback.");
+//         });
+// }

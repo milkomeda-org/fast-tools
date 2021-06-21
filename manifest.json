@@ -2,18 +2,23 @@
   "name": "Fast Tools",
   "version": "1.3",
   "description": "Integration of features that most developers and artists use",
-  "permissions": [
-    "contextMenus",
+  "optional_permissions": [
+    "contextMenus"
+  ],
+  "host_permissions": [
     "*://*/*"
   ],
   "background": {
-    "scripts": [
-      "utils.js",
-      "background.js"
-    ],
-    "persistent": false
+    "service_worker": "background.js"
   },
-  "browser_action": {
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
     "default_popup": "popup.html",
     "default_title": "display tooltip",
     "default_icon": {
@@ -29,5 +34,5 @@
     "48": "images/48.png",
     "128": "images/128.png"
   },
-  "manifest_version": 2
+  "manifest_version": 3
 }
